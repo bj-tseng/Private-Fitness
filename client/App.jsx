@@ -32,7 +32,20 @@ class App extends Component {
   getData(username, password) {
     const userForm = document.getElementById('loginForm')
     userForm.reset();
-    
+    const data = {
+      username,
+      password,
+    };
+    fetch('/api/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    .then(res => res.json())
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
   }
 
   render() {
