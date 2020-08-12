@@ -1,7 +1,7 @@
 {
-  "name": "aqi-intelligence",
+  "name": "weight-tracker",
   "version": "1.0.0",
-  "description": "relaying latest AQI information based on one's location",
+  "description": "program to discreetly store weight loss data to help achieve personal wellbeing goals",
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=production nodemon server/server.js",
@@ -15,6 +15,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "path": "^0.12.7",
+    "pg": "^8.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },

@@ -11,7 +11,7 @@ module.exports = {
     contentBase: path.resolve(__dirname, 'client'),
     publicPath: '/build/',
     proxy: {
-      '/api': 'http://localhost:3000',
+      '/api/**': 'http://localhost:3000',
     },
     hot: true,
   },
@@ -19,7 +19,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
