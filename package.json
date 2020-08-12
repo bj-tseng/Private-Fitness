@@ -2,7 +2,7 @@
   "name": "aqi-intelligence",
   "version": "1.0.0",
   "description": "relaying latest AQI information based on one's location",
-  "main": "App.jsx",
+  "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=production nodemon server/server.js",
     "build": "NODE_ENV=production webpack",

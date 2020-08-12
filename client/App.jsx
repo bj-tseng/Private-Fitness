@@ -1,9 +1,13 @@
-import React from 'react';
-import { render } from 'react-dom';
+import React, { Component } from 'react';
 
-import './style.css';
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <p>Indeed</p>
+      </div>
+    )
+  }
+}
 
-render(
-  <h4>Yes, hello there</h4>,
-  document.getElementById('app')
-);
+export default App;
