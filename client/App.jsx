@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import Form from './Form.jsx'
+import Form from './Form.jsx';
+import Data from './Data.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +16,6 @@ class App extends Component {
   }
 
   updateUser(input) {
-    console.log(this.state.username)
     this.setState({
       ...this.state,
       username: input,
@@ -44,21 +44,31 @@ class App extends Component {
       body: JSON.stringify(data),
     })
     .then(res => res.json())
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
+    .then(res => {
+      if (res) {
+        document.getElementById('welcome_msg').innerHTML = 'Welcome Back!';
+        document.getElementById('login_form').style.display = 'none';
+      };
+    })
+    .catch(err => console.log('error with the fetch: ', err));
   }
 
   render() {
     return (
       <div>
-        <Form
-          key={1}
-          updateUser={this.updateUser}
-          updatePassword={this.updatePassword}
-          getData={this.getData}
-          username={this.state.username}
-          password={this.state.password}
-        />
+        <div id ="login_form">
+          <Form
+            key={1}
+            updateUser={this.updateUser}
+            updatePassword={this.updatePassword}
+            getData={this.getData}
+            username={this.state.username}
+            password={this.state.password}
+          />
+        </div>
+        <div>
+          <Data />
+        </div>
       </div>
     )
   }

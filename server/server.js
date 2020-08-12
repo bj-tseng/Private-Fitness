@@ -18,15 +18,26 @@ if (process.env.NODE_ENV === 'production') {
 
 // Login
 
-app.post('/api', (req, res) => {
-  console.log(req.body);
-  res.status(200).json('Successful request');
+app.post('/api', (req, res, next) => {
+  const { username, password } = req.body;
+  if (username === 'bonjay' && password === 'tseng') {
+    res.status(200).json('Successful request');
+  } else {
+    const errorMsg = 'Bad login credentials';
+    return next(errorMsg);
+  }
 });
 
 // Handling unknown URLs
 
 app.use('*', (req, res) => {
-  res.status(400).send('URL path not found');
+  res.status(404).send('URL path not found');
+});
+
+// Error handler
+
+app.use((err, req, res, next) => {
+  res.sendstatus(400);
 });
 
 app.listen(3000);
