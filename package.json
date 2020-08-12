@@ -1,12 +1,12 @@
 {
   "name": "aqi-intelligence",
   "version": "1.0.0",
-  "description": "",
-  "main": "./client/App.jsx",
+  "description": "relaying latest AQI information based on one's location",
+  "main": "App.jsx",
   "scripts": {
-    "start": "nodemon server/server.js",
+    "start": "NODE_ENV=production nodemon server/server.js",
     "build": "NODE_ENV=production webpack",
-    "dev": "",
+    "dev": "NODE_ENV=development webpack-dev-server --hot & nodemon server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -23,8 +23,11 @@
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
     "babel-loader": "^8.1.0",
+    "css-loader": "^4.2.1",
     "nodemon": "^2.0.4",
+    "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   }
 }

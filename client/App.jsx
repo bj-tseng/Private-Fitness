@@ -1,7 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
 
+import './style.css';
+
 render(
-  <h1>Yes, hello there</h1>,
+  <h4>Yes, hello there</h4>,
   document.getElementById('app')
 );

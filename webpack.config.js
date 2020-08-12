@@ -5,6 +5,15 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
+    publicPath: '/build/',
+  },
+  devServer: {
+    contentBase: path.resolve(__dirname, 'client'),
+    publicPath: '/build/',
+    proxy: {
+      '/api': 'http://localhost:3000',
+    },
+    hot: true,
   },
   mode: process.env.NODE_ENV,
   module: {
@@ -18,6 +27,11 @@ module.exports = {
             presets: ['@babel/preset-env', '@babel/preset-react'],
           },
         },
+      },
+      {
+        test: /\.css$/i,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
