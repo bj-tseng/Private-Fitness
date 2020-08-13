@@ -57,7 +57,7 @@ class App extends Component {
       username,
       password,
     };
-    fetch('/api/', {
+    fetch('/api/login/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -66,31 +66,57 @@ class App extends Component {
     })
     .then(res => res.json())
     .then(res => {
-      if (res) {
-        document.getElementById('welcome_msg').innerHTML = 'Welcome Back!';
-        document.getElementById('login_form').style.display = 'none';
-        document.getElementById('update_form').style.display = 'flex';
+      if (typeof res === 'string') {
+        alert(res);
+      } else {
+        document.getElementById('welcome_msg').innerHTML = `Welcome Back ${this.state.username}!`;
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('updateForm').style.display = 'flex';
         this.setState({
           ...this.state,
           weight_data: res,
         })
-      };
+      }
     })
     .catch(err => console.log('error with the fetch: ', err));
   }
 
   updateData (date, newWeight) {
-    console.log('username: ', this.state.username);
-    console.log('password: ', this.state.password);
-    console.log('date: ', date)
-    console.log('weight: ', newWeight)
-    // Need to make another post request & update the weight data
+    const data   = {
+      username: this.state.username,
+      password: this.state.password,
+      date,
+      weight: newWeight,
+    }
+    fetch('/api/update/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res);
+      // if (typeof res === 'string') {
+      //   alert(res);
+      // } else {
+      //   document.getElementById('welcome_msg').innerHTML = `Welcome Back ${this.state.username}!`;
+      //   document.getElementById('loginForm').style.display = 'none';
+      //   document.getElementById('updateForm').style.display = 'flex';
+      //   this.setState({
+      //     ...this.state,
+      //     weight_data: res,
+      //   })
+      // }
+    })
+    .catch(err => console.log('error with the fetch: ', err));
   }
 
   render() {
     return (
       <div>
-        <div id ="login_form">
+        <div>
           <Form
             key={1}
             updateUser={this.updateUser}
@@ -100,7 +126,7 @@ class App extends Component {
             password={this.state.password}
           />
         </div>
-        <div id="update_form">
+        <div>
           <Update
             key={2}
             updateDate={this.updateDate}

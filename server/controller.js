@@ -4,7 +4,6 @@ const controller = {};
 
 controller.verifyUser = async (req, res, next) => {
   const { username, password } = req.body;
-  console.log(username, password);
 
   const text = `
     SELECT password, _id
@@ -12,15 +11,18 @@ controller.verifyUser = async (req, res, next) => {
     WHERE username = '${username}';`
   
   try {
-    const result = await db.query(text);
-    const { password: resultPassword, _id: id  } = result.rows[0];
-    if (password === resultPassword) {
-      res.locals.id = id;
-      return next();
-    }
+      const result = await db.query(text);
+      const { password: resultPassword, _id: id  } = result.rows[0];
+      if (password === resultPassword) {
+        res.locals.msg = 'Successful sign-in'
+        res.locals.id = id;
+        return next();
+      } else {
+        return next('Incorrect password provided');
+      }
   } catch(err) {
-    console.log('There was an error with the SQL query')
-    return next(err);
+      console.log('Error occurred with SQL req: ', err)
+      return next('Unknown user provided');
   }
 };
 
@@ -32,13 +34,31 @@ controller.getInfo = async (req, res, next) => {
     WHERE weight.friends_id = '${res.locals.id}';`
   
   try {
-    const result = await db.query(text);
-    const weightSummary = result.rows;
-    res.locals.output = weightSummary;
-    return next();
+      const result = await db.query(text);
+      const weightSummary = result.rows;
+      res.locals.output = weightSummary;
+      return next();
   } catch(err) {
-    console.log('There was an error with the SQL query')
-    return next(err);
+      console.log('Error occurred with SQL req: ', err)
+      return next('Database malfunctioned');
+  }
+};
+
+controller.updateInfo = async (req, res, next) => {
+  
+  const { date, weight } = req.body;
+
+  const text = `
+   INSERT INTO weight (date, weight, friends_id)
+   VALUES ('${date}', ${weight}, ${res.locals.id});`
+  
+  try {
+      await db.query(text);
+      res.locals.msg = 'Successfully updated'
+      return next();
+  } catch(err) {
+      console.log('Error occurred with SQL req: ', err)
+      return next('Database malfunctioned');
   }
 };
 

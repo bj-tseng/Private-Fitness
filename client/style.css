@@ -1,11 +1,10 @@
 * {
-  background-color: #c9e9f6;
+  background-color: lightblue;
 }
 
 body {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
 }
 
@@ -15,6 +14,6 @@ body {
   align-items: center;
 }
 
-#update_form {
+#updateForm {
   display: none;
 }

@@ -19,13 +19,33 @@ if (process.env.NODE_ENV === 'production') {
 
 // LOGGING IN
 
-app.post('/api',
+app.post('/api/login',
   controller.verifyUser,
   controller.getInfo,
   (req, res) => {
-    res.status(200).json(res.locals.output);
+    const returnMsg = {
+      msg: res.locals.msg,
+      data: res.locals.output
+    }
+    res.status(200).json(returnMsg);
   }
 );
+
+// UPDATING USER DATA
+
+app.post('/api/update',
+  controller.verifyUser,
+  controller.updateInfo,
+  controller.getInfo,
+  (req, res) => {
+    const returnMsg = {
+      msg: res.locals.msg,
+      data: res.locals.output
+    }
+    res.status(200).json(returnMsg);
+  }
+);
+
 
 // HANDLING UNKNOWN URLS
 
@@ -36,7 +56,8 @@ app.use('*', (req, res) => {
 // GLOBAL ERROR HANDLER
 
 app.use((err, req, res, next) => {
-  res.sendStatus(400);
+  console.log(err);
+  res.status(400).json(err);
 });
 
 app.listen(3000);
