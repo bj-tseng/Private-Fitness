@@ -1,7 +1,8 @@
 const express = require('express');
+
 const app = express();
 const path = require('path');
-const controller = require('./controller')
+const controller = require('./controller');
 
 // PARSERS
 
@@ -25,10 +26,10 @@ app.post('/api/login',
   (req, res) => {
     const returnMsg = {
       msg: res.locals.msg,
-      data: res.locals.output
-    }
+      data: res.locals.output,
+    };
     res.status(200).json(returnMsg);
-  }
+  },
 );
 
 // UPDATING USER DATA
@@ -40,12 +41,11 @@ app.post('/api/update',
   (req, res) => {
     const returnMsg = {
       msg: res.locals.msg,
-      data: res.locals.output
-    }
+      data: res.locals.output,
+    };
     res.status(200).json(returnMsg);
-  }
+  },
 );
-
 
 // HANDLING UNKNOWN URLS
 

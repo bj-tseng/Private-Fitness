@@ -17,3 +17,7 @@ body {
 #updateForm {
   display: none;
 }
+
+#weight_container {
+  display: none;
+}

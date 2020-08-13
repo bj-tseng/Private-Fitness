@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Form = ({ updateUser, updatePassword, getData, username, password }) => {
+const SignIn = ({ updateUser, updatePassword, getData, username, password }) => {
   return (
     <div>
       <form
@@ -28,4 +28,4 @@ const Form = ({ updateUser, updatePassword, getData, username, password }) => {
   )
 };
 
-export default Form;
+export default SignIn;

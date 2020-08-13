@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import Form from './Form.jsx';
+import SignIn from './SignIn.jsx';
 import Data from './Data.jsx';
 import Update from './Update.jsx';
 
@@ -51,8 +51,8 @@ class App extends Component {
   }
 
   getData(username, password) {
-    const userForm = document.getElementById('loginForm')
-    userForm.reset();
+    const currentForm = document.getElementById('loginForm')
+    currentForm.reset();
     const data = {
       username,
       password,
@@ -69,9 +69,10 @@ class App extends Component {
       if (typeof res === 'string') {
         alert(res);
       } else {
-        document.getElementById('welcome_msg').innerHTML = `Welcome Back ${this.state.username}!`;
+        document.getElementById('welcome_msg').innerHTML = `Welcome back ${this.state.username}!`;
         document.getElementById('loginForm').style.display = 'none';
         document.getElementById('updateForm').style.display = 'flex';
+        document.getElementById('weight_container').style.display = 'flex';
         this.setState({
           ...this.state,
           weight_data: res.data,
@@ -82,6 +83,8 @@ class App extends Component {
   }
 
   updateData (date, newWeight) {
+    const currentForm = document.getElementById('updateForm')
+    currentForm.reset();
     const data   = {
       username: this.state.username,
       password: this.state.password,
@@ -113,7 +116,7 @@ class App extends Component {
     return (
       <div>
         <div>
-          <Form
+          <SignIn
             key={1}
             updateUser={this.updateUser}
             updatePassword={this.updatePassword}

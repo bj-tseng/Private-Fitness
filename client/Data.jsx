@@ -1,14 +1,28 @@
 import React from 'react';
+import { parse } from 'path';
 
 const Data = (props) => {
   let weightInfo;
   if (props.weight_data.length === 0) {
-    weightInfo = '';
+    weightInfo = 'No current weight information is stored.';
   } else {
-    weightInfo = JSON.stringify(props.weight_data)
+    const reordered = props.weight_data.map(obj => {
+      obj.order = Date.parse(obj.date);
+      return obj;
+    })
+    reordered.sort((a, b) => {
+      return b.order - a.order;
+    })
+    weightInfo = [];
+    reordered.forEach((record, i) => {
+      weightInfo.push(<p key={i}><strong>Date :</strong> {record.date}<strong>Recorded Weight :</strong> {record.weight}</p>)
+    });
   }
+
   return (
-  <p>{weightInfo}</p>
+    <div id="weight_container">
+      {weightInfo}
+    </div>
   )
 }
 
