@@ -74,7 +74,7 @@ class App extends Component {
         document.getElementById('updateForm').style.display = 'flex';
         this.setState({
           ...this.state,
-          weight_data: res,
+          weight_data: res.data,
         })
       }
     })
@@ -97,18 +97,14 @@ class App extends Component {
     })
     .then(res => res.json())
     .then(res => {
-      console.log(res);
-      // if (typeof res === 'string') {
-      //   alert(res);
-      // } else {
-      //   document.getElementById('welcome_msg').innerHTML = `Welcome Back ${this.state.username}!`;
-      //   document.getElementById('loginForm').style.display = 'none';
-      //   document.getElementById('updateForm').style.display = 'flex';
-      //   this.setState({
-      //     ...this.state,
-      //     weight_data: res,
-      //   })
-      // }
+      if (typeof res === 'string') {
+        alert(res);
+      } else {
+        this.setState({
+          ...this.state,
+          weight_data: res.data,
+        })
+      }
     })
     .catch(err => console.log('error with the fetch: ', err));
   }
