@@ -4,7 +4,8 @@ const controller = {};
 
 controller.verifyUser = async (req, res, next) => {
   const { username, password } = req.body;
-  
+  console.log(username, password);
+
   const text = `
     SELECT password, _id
     FROM friends

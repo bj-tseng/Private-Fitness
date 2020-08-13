@@ -19,17 +19,6 @@ if (process.env.NODE_ENV === 'production') {
 
 // LOGGING IN
 
-// app.post('/api', (req, res, next) => {
-//   const { username, password } = req.body;
-//   if (username === 'bonjay' && password === 'tseng') {
-//     res.status(200).json('Successful request');
-//   } else {
-//     const errorMsg = 'Bad login credentials';
-//     return next(errorMsg);
-//   }
-// });
-
-
 app.post('/api',
   controller.verifyUser,
   controller.getInfo,

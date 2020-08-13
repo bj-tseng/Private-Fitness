@@ -70,8 +70,10 @@ class App extends Component {
         document.getElementById('welcome_msg').innerHTML = 'Welcome Back!';
         document.getElementById('login_form').style.display = 'none';
         document.getElementById('update_form').style.display = 'flex';
-        console.log(res);
-        
+        this.setState({
+          ...this.state,
+          weight_data: res,
+        })
       };
     })
     .catch(err => console.log('error with the fetch: ', err));
