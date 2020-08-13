@@ -1,5 +1,5 @@
 import React from 'react';
-import { parse } from 'path';
+// import { parse } from 'path';
 
 const Data = (props) => {
   let weightInfo;
@@ -15,12 +15,12 @@ const Data = (props) => {
     })
     weightInfo = [];
     reordered.forEach((record, i) => {
-      weightInfo.push(<p key={i}><strong>Date :</strong> {record.date}<strong>Recorded Weight :</strong> {record.weight}</p>)
+      weightInfo.push(<p key={i}><strong>Date :</strong> {record.date}<strong> Recorded Weight :</strong> {record.weight}</p>)
     });
   }
 
   return (
-    <div id="weight_container">
+    <div id="weight_container" style={props.style}>
       {weightInfo}
     </div>
   )

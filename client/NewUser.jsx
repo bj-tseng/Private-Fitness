@@ -1,14 +1,14 @@
 import React from 'react';
 
-const SignIn = ({ updateUser, updatePassword, getData, username, password }) => {
+const NewUser = ({ createUser, updateUser, updatePassword, username, password }) => {
   return (
-    <div id="loginForm">
-      <h4><strong>Current Users Sign-in Here</strong></h4>
+    <div id="signupForm">
+      <h4><strong>New Users Create an Account Here</strong></h4>
       <form
-      id="loginForm_Form"
+      id="signupForm_Form"
       onSubmit={(e) => {
         e.preventDefault();
-        getData(username, password);
+        createUser(username, password);
       }}
       >
         <label htmlFor="user">Username: </label>
@@ -23,10 +23,10 @@ const SignIn = ({ updateUser, updatePassword, getData, username, password }) => 
           id="pass"
           onChange={(e) => updatePassword(e.target.value)}
         />
-        <input type="submit" value="Login" />
+        <input type="submit" value="Create Account" />
       </form>
     </div>
   )
 };
 
-export default SignIn;
+export default NewUser;

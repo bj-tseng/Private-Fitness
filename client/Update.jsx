@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Update = ({ updateDate, updateWeight, updateData, date, weight }) => {
+const Update = ({ updateDate, updateWeight, updateData, date, weight, style }) => {
   return (
     <div>
       <form
+      style={style}
       id="updateForm"
       onSubmit={(e) => {
         e.preventDefault();
@@ -24,6 +25,7 @@ const Update = ({ updateDate, updateWeight, updateData, date, weight }) => {
         />
         <input type="submit" value="Upload" />
       </form>
+      <br/>
     </div>
   )
 };

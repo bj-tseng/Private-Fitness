@@ -18,6 +18,20 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
+// CREATING A NEW USER
+
+app.post('/api/create',
+  controller.createUser,
+  controller.verifyUser,
+  controller.getInfo,
+  (req, res) => {
+    const returnMsg = {
+      msg: 'Successful account creation',
+      data: res.locals.output,
+    };
+    res.status(200).json(returnMsg);
+  });
+
 // LOGGING IN
 
 app.post('/api/login',
@@ -29,8 +43,7 @@ app.post('/api/login',
       data: res.locals.output,
     };
     res.status(200).json(returnMsg);
-  },
-);
+  });
 
 // UPDATING USER DATA
 
@@ -44,8 +57,7 @@ app.post('/api/update',
       data: res.locals.output,
     };
     res.status(200).json(returnMsg);
-  },
-);
+  });
 
 // HANDLING UNKNOWN URLS
 
@@ -56,7 +68,6 @@ app.use('*', (req, res) => {
 // GLOBAL ERROR HANDLER
 
 app.use((err, req, res, next) => {
-  console.log(err);
   res.status(400).json(err);
 });
 

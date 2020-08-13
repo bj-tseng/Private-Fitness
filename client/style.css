@@ -1,23 +1,33 @@
 * {
-  background-color: lightblue;
+  font-family: comic Verdana, Geneva, Tahoma, sans-serif
 }
 
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: lightblue;
 }
 
-#loginForm {
+#signupForm,
+#signupForm_Form,
+#loginForm,
+#loginForm_Form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  width: 50vw;
+  background-color: lightsteelblue;
+  height: 200px;
 }
 
-#updateForm {
-  display: none;
+h4 {
+  color: green;
 }
 
+#updateForm,
 #weight_container {
   display: none;
 }
+
