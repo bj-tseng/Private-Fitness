@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Data = () => {
+const Data = (props) => {
   return (
-    <p id="data_pull">Hi</p>
+  <p>{props.weight_data}</p>
   )
 }
 
